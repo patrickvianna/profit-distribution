@@ -1,0 +1,15 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/DistribuicaoLucros/.vs/DistribuicaoLucros
+/DistribuicaoLucros/src/DistribuicaoLucros.Api/bin/Debug/netcoreapp3.1
+/DistribuicaoLucros/src/DistribuicaoLucros.Api/obj
+/DistribuicaoLucros/src/DistribuicaoLucros.Domain/bin/Debug/netcoreapp3.1
+/DistribuicaoLucros/src/DistribuicaoLucros.Domain/obj
+/DistribuicaoLucros/src/DistribuicaoLucros.Infraestructure.Data/bin/Debug/netcoreapp3.1
+/DistribuicaoLucros/src/DistribuicaoLucros.Infraestructure.Data/obj
+/DistribuicaoLucros/src/DistribuicaoLucros.Ioc/bin/Debug/netcoreapp3.1
+/DistribuicaoLucros/src/DistribuicaoLucros.Ioc/obj
+/DistribuicaoLucros/src/DistribuicaoLucros.Service/bin/Debug/netcoreapp3.1
+/DistribuicaoLucros/src/DistribuicaoLucros.Service/obj

@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FirebaseDatabase.net" Version="4.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.12" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DistribuicaoLucros.Domain\DistribuicaoLucros.Domain.csproj" />
+    <ProjectReference Include="..\DistribuicaoLucros.Infraestructure.Data\DistribuicaoLucros.Infraestructure.Data.csproj" />
+    <ProjectReference Include="..\DistribuicaoLucros.Service\DistribuicaoLucros.Service.csproj" />
+  </ItemGroup>
+
+</Project>
