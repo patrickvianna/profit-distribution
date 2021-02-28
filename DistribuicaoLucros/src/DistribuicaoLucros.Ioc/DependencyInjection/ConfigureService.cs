@@ -9,7 +9,7 @@ namespace DistribuicaoLucros.Ioc.DependencyInjection
         public static void ConfigureDependenciesService(IServiceCollection services)
         {
             services.AddScoped<IEmployeeService, EmployeeService>();
-
+            services.AddScoped<IProfitDistributionService, ProfitDistributionService>();
         }
     }
 }

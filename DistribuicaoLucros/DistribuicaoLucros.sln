@@ -7,15 +7,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{65C16FC8-C6D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{3FA66492-7120-4BE1-B940-E82AB2E19EEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DistribuicaoLucros.Api", "src\DistribuicaoLucros.Api\DistribuicaoLucros.Api.csproj", "{56C51A35-6BE2-4AFE-AE21-766A700099DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DistribuicaoLucros.Api", "src\DistribuicaoLucros.Api\DistribuicaoLucros.Api.csproj", "{56C51A35-6BE2-4AFE-AE21-766A700099DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DistribuicaoLucros.Domain", "src\DistribuicaoLucros.Domain\DistribuicaoLucros.Domain.csproj", "{2E3386AD-EFD8-4BE2-ACEF-A1CAE41DF155}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DistribuicaoLucros.Domain", "src\DistribuicaoLucros.Domain\DistribuicaoLucros.Domain.csproj", "{2E3386AD-EFD8-4BE2-ACEF-A1CAE41DF155}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DistribuicaoLucros.Infraestructure.Data", "src\DistribuicaoLucros.Infraestructure.Data\DistribuicaoLucros.Infraestructure.Data.csproj", "{5393666C-C113-4304-ACB9-B07E26C60444}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DistribuicaoLucros.Infraestructure.Data", "src\DistribuicaoLucros.Infraestructure.Data\DistribuicaoLucros.Infraestructure.Data.csproj", "{5393666C-C113-4304-ACB9-B07E26C60444}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DistribuicaoLucros.Ioc", "src\DistribuicaoLucros.Ioc\DistribuicaoLucros.Ioc.csproj", "{2F55899B-53E6-481C-94B2-D893599E6A7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DistribuicaoLucros.Ioc", "src\DistribuicaoLucros.Ioc\DistribuicaoLucros.Ioc.csproj", "{2F55899B-53E6-481C-94B2-D893599E6A7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DistribuicaoLucros.Service", "src\DistribuicaoLucros.Service\DistribuicaoLucros.Service.csproj", "{30FBF9B1-F480-480F-A020-0D21ED2C4932}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DistribuicaoLucros.Service", "src\DistribuicaoLucros.Service\DistribuicaoLucros.Service.csproj", "{30FBF9B1-F480-480F-A020-0D21ED2C4932}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DistribuicaoLucro.Tests.Domain", "test\DistribuicaoLucro.Tests.Domain\DistribuicaoLucro.Tests.Domain.csproj", "{B397253E-4C42-4E43-80E3-5E57056B0489}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{30FBF9B1-F480-480F-A020-0D21ED2C4932}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30FBF9B1-F480-480F-A020-0D21ED2C4932}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30FBF9B1-F480-480F-A020-0D21ED2C4932}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B397253E-4C42-4E43-80E3-5E57056B0489}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B397253E-4C42-4E43-80E3-5E57056B0489}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B397253E-4C42-4E43-80E3-5E57056B0489}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B397253E-4C42-4E43-80E3-5E57056B0489}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{5393666C-C113-4304-ACB9-B07E26C60444} = {65C16FC8-C6DD-4395-8FE5-D9D7A508B802}
 		{2F55899B-53E6-481C-94B2-D893599E6A7C} = {65C16FC8-C6DD-4395-8FE5-D9D7A508B802}
 		{30FBF9B1-F480-480F-A020-0D21ED2C4932} = {65C16FC8-C6DD-4395-8FE5-D9D7A508B802}
+		{B397253E-4C42-4E43-80E3-5E57056B0489} = {3FA66492-7120-4BE1-B940-E82AB2E19EEF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AE2DA35F-DF08-4ED1-980A-CB0DAD6DAC6D}

@@ -13,3 +13,5 @@
 /DistribuicaoLucros/src/DistribuicaoLucros.Ioc/obj
 /DistribuicaoLucros/src/DistribuicaoLucros.Service/bin/Debug/netcoreapp3.1
 /DistribuicaoLucros/src/DistribuicaoLucros.Service/obj
+/DistribuicaoLucros/test/DistribuicaoLucro.Tests.Domain/bin/Debug/netcoreapp3.1
+/DistribuicaoLucros/test/DistribuicaoLucro.Tests.Domain/obj

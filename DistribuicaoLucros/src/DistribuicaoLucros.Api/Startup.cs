@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using DistribuicaoLucros.Domain.Mappers;
 using DistribuicaoLucros.Ioc.DependencyInjection;
+using DistribuicaoLucros.Ioc.Mapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -28,9 +29,10 @@ namespace DistribuicaoLucros.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            ConfigureTools.ConfigureDependenciesTools(services);
             ConfigureService.ConfigureDependenciesService(services);
             ConfigureRepository.ConfigureDependenciesService(services, Configuration);
-            RegisterMappings(services);
+            AutoMapperConfig.ConfigureMappers(services);
 
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1",
@@ -80,15 +82,5 @@ namespace DistribuicaoLucros.Api
                 endpoints.MapControllers();
             });
         }
-
-        private void RegisterMappings(IServiceCollection services)
-        {
-            var mappingConfig = new MapperConfiguration(mc => {
-                mc.AddProfile(new EmployeeProfile());
-            });
-            IMapper mapper = mappingConfig.CreateMapper();
-            services.AddSingleton(mapper);
-        }
     }
-
 }
