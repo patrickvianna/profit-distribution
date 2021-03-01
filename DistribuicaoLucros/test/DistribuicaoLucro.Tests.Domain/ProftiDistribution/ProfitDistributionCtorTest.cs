@@ -1,5 +1,6 @@
 ﻿using DistribuicaoLucros.Domain.Entities;
 using DistribuicaoLucros.Domain.Interfaces.Tools;
+using DistribuicaoLucros.Domain.Messages;
 using DistribuicaoLucros.Domain.Tools;
 using Moq;
 using System;
@@ -52,12 +53,15 @@ namespace DistribuicaoLucro.Tests.Domain.ProftiDistribution
             //Arrange
             var employees = _employees;
 
-            //Assert
-            Assert.Throws<ArgumentException>(
-                //Act
-                () => new ProfitDistribution(employees, totalAvailable, _dateTimeToolsMock.Object)
-            );
+            //Act
+            var profit = new ProfitDistribution(employees, totalAvailable, _dateTimeToolsMock.Object);
 
+            //Assert
+            var expectedMessage = Message.ProfitDistributionMessage.TotalAvailableShouldBeGreaterThanZero;
+            var hasExpectedMessage = profit.Notifications.Any(x => x.Message.Equals(expectedMessage));
+
+            Assert.Single(profit.Notifications);
+            Assert.True(hasExpectedMessage);
         }
 
         [Fact]
@@ -67,14 +71,17 @@ namespace DistribuicaoLucro.Tests.Domain.ProftiDistribution
             var employees = new List<Employee>();
             var totalAvailable = _totalAvailable;
 
-            //Assert
-            Assert.Throws<ArgumentException>(
-                //Act
-                () => new ProfitDistribution(employees, totalAvailable, _dateTimeToolsMock.Object)
-            );
+            //Act
+            var profit = new ProfitDistribution(employees, totalAvailable, _dateTimeToolsMock.Object);
 
+            //Assert
+            var expectedMessage = Message.ProfitDistributionMessage.MustHaveLeastOneEmployee;
+            var hasExpectedMessage = profit.Notifications.Any(x => x.Message.Equals(expectedMessage));
+
+            Assert.Single(profit.Notifications);
+            Assert.True(hasExpectedMessage);
         }
-        
+
         [Fact]
         public void ShouldBeThrowArgumentioException_WhenEmployees_CountIsNull()
         {
@@ -82,11 +89,16 @@ namespace DistribuicaoLucro.Tests.Domain.ProftiDistribution
             List<Employee> employees = null;
             var totalAvailable = _totalAvailable;
 
+            //Act
+            var profit = new ProfitDistribution(employees, totalAvailable, _dateTimeToolsMock.Object);
+
             //Assert
-            Assert.Throws<ArgumentException>(
-                //Act
-                () => new ProfitDistribution(employees, totalAvailable, _dateTimeToolsMock.Object)
-            );
+            var expectedMessage = Message.ProfitDistributionMessage.MustHaveLeastOneEmployee;
+            var hasExpectedMessage = profit.Notifications.Any(x => x.Message.Equals(expectedMessage));
+
+            Assert.Single(profit.Notifications);
+            Assert.True(hasExpectedMessage);
 
         }
+    }
 }

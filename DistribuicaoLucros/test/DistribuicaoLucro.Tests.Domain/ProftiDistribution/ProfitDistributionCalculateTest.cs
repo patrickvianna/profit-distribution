@@ -1,11 +1,10 @@
 ﻿using DistribuicaoLucros.Domain.Entities;
 using DistribuicaoLucros.Domain.Interfaces.Tools;
-using DistribuicaoLucros.Domain.Tools;
+using DistribuicaoLucros.Domain.Messages;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Xunit;
 
 namespace DistribuicaoLucro.Tests.Domain.ProftiDistribution
@@ -59,6 +58,27 @@ namespace DistribuicaoLucro.Tests.Domain.ProftiDistribution
             Assert.Equal(employees.Count(), profitDistribution.Participations.Count());
         }
 
+        [Fact]
+        public void ShouldBeNotification_WhenTotalAvailable_LessThanTotalDistributed()
+        {
+            //Arrange
+            var nowFake = new DateTime(2021, 02, 28);
+            _dateTimeToolsMock.Setup(x => x.GetDateTimeNow()).Returns(nowFake);
+
+            var totalAvailable = 70000;
+
+            var profitDistribution = new ProfitDistribution(_employees, totalAvailable, _dateTimeToolsMock.Object);
+
+            //Act
+            profitDistribution.Calculate();
+
+            //Assert
+            var expectedMessage = Message.ProfitDistributionMessage.TotalAvailableIsNotEnough(profitDistribution.TotalDistributed);
+            var hasExpectedMessage = profitDistribution.Notifications.Any(x => x.Message.Equals(expectedMessage));
+
+            Assert.Single(profitDistribution.Notifications);
+            Assert.True(hasExpectedMessage);
+        }
 
         [Fact]
         public void ShouldBe_TotalDistributed_WhenAdimissionDateLessThan_OneYear()

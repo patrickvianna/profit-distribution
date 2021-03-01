@@ -2,7 +2,7 @@
 
 namespace DistribuicaoLucros.Domain.Entities
 {
-    public class Employee
+    public class Employee : Entity
     {
         public string Registration { get; set; }
         public string Name { get; set; }

@@ -1,5 +1,6 @@
 ﻿using DistribuicaoLucros.Domain.DTO;
 using DistribuicaoLucros.Domain.Interfaces.Tools;
+using DistribuicaoLucros.Domain.Messages;
 using DistribuicaoLucros.Domain.Tools;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Linq;
 
 namespace DistribuicaoLucros.Domain.Entities
 {
-    public class ProfitDistribution
+    public class ProfitDistribution : Entity
     {
         public List<EmployeeProfitSharingDto> Participations { get; set; }
         public int TotalEmployees { get; set; }
@@ -23,10 +24,10 @@ namespace DistribuicaoLucros.Domain.Entities
         public ProfitDistribution(List<Employee> employees, double totalAvailable, IDateTimeTools dateTimeTools)
         {
             if (totalAvailable <= 0)
-                throw new ArgumentException("O valor a ser distribuído deve ser maior que zero");
+                AddNotification("total_disponibilizado", Message.ProfitDistributionMessage.TotalAvailableShouldBeGreaterThanZero);
 
             if (employees == null || !employees.Any())
-                throw new ArgumentException("Deve ter pelo menos um funcionário para calcular a distribuição dos lucros");
+                AddNotification("quantidade_funcionarios", Message.ProfitDistributionMessage.MustHaveLeastOneEmployee);
 
             _dateTimeTools = dateTimeTools;
             Employees = employees;
@@ -113,7 +114,7 @@ namespace DistribuicaoLucros.Domain.Entities
         private void IsTotalAvailableSufficient()
         {
             if (TotalBalanceAvailable < 0)
-                throw new ArgumentException($"O saldo disponibilizado não é suficiente para a operação. É necessário {TotalDistributed.ToCurrency()} para distribuir para todos funcionários.");
+                AddNotification("total_disponibilizado", Message.ProfitDistributionMessage.TotalAvailableIsNotEnough(TotalDistributed));
         }
         #endregion
     }
