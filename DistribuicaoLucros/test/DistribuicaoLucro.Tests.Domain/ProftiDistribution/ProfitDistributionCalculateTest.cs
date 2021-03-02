@@ -68,7 +68,7 @@ namespace DistribuicaoLucro.Tests.Domain.ProftiDistribution
             var totalAvailable = 70000;
 
             var profitDistribution = new ProfitDistribution(_employees, totalAvailable, _dateTimeToolsMock.Object);
-
+            
             //Act
             profitDistribution.Calculate();
 

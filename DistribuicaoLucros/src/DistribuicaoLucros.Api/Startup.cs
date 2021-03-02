@@ -1,19 +1,15 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using DistribuicaoLucros.Domain.Mappers;
+using DistribuicaoLucros.Api.Extensions;
+using DistribuicaoLucros.Api.Filters;
+using DistribuicaoLucros.Domain.Notification;
 using DistribuicaoLucros.Ioc.DependencyInjection;
 using DistribuicaoLucros.Ioc.Mapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace DistribuicaoLucros.Api
@@ -33,6 +29,9 @@ namespace DistribuicaoLucros.Api
             ConfigureService.ConfigureDependenciesService(services);
             ConfigureRepository.ConfigureDependenciesService(services, Configuration);
             AutoMapperConfig.ConfigureMappers(services);
+            GlobalExceptionHandlerExtensions.AddGlobalExceptionHandler(services);
+
+            services.AddScoped<NotificationContext>();
 
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1",
@@ -50,7 +49,7 @@ namespace DistribuicaoLucros.Api
                     });
             });
 
-            services.AddControllers();
+            services.AddControllers(options => options.Filters.Add<NotificationFilter>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,6 +60,7 @@ namespace DistribuicaoLucros.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            GlobalExceptionHandlerExtensions.UseGlobalExceptionHandler(app);
 
             //Ativando middlewares para uso do Swagger
             app.UseSwagger();

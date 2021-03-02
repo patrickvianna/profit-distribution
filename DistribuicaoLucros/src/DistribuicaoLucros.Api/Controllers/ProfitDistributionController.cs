@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using DistribuicaoLucros.Domain.DTO;
 using DistribuicaoLucros.Domain.Interfaces.Service;
-using Microsoft.AspNetCore.Http;
+using DistribuicaoLucros.Domain.Notification;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DistribuicaoLucros.Api.Controllers
@@ -14,10 +11,13 @@ namespace DistribuicaoLucros.Api.Controllers
     public class ProfitDistributionController : ControllerBase
     {
         private IProfitDistributionService _profitDistributionService;
+        private NotificationContext _notificationContext;
 
-        public ProfitDistributionController(IProfitDistributionService profitDistributionService)
+        public ProfitDistributionController(IProfitDistributionService profitDistributionService,
+                                            NotificationContext notificationContext)
         {
             _profitDistributionService = profitDistributionService;
+            _notificationContext = notificationContext;
         }
         /// <summary>
         /// Calcular a distribuição de lucros para todos os funcionários cadastrados
