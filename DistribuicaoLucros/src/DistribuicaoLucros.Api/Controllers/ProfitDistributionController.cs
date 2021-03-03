@@ -13,19 +13,28 @@ namespace DistribuicaoLucros.Api.Controllers
         private IProfitDistributionService _profitDistributionService;
         private NotificationContext _notificationContext;
 
+
         public ProfitDistributionController(IProfitDistributionService profitDistributionService,
                                             NotificationContext notificationContext)
         {
             _profitDistributionService = profitDistributionService;
             _notificationContext = notificationContext;
         }
+
         /// <summary>
-        /// Calcular a distribuição de lucros para todos os funcionários cadastrados
+        /// Calcula qual o lucro que será distribuído para todos os funcionários cadastrados
         /// </summary>
         /// <remarks>
-        /// <param name="codigoAgenda"></param>
-        /// <returns>Agenda atualizada.</returns>
-        /// <response code="200">Confirmação realizado com sucesso.</response>
+        /// Sample request:
+        ///
+        ///     GET
+        ///     valueToDistribute = 000.00
+        ///
+        /// </remarks>
+        /// <param name="valueToDistribute"></param>
+        /// <returns>Objeto com o cálculo do lucro que será distribuído e os funcionários participantes desse cálculo</returns>
+        /// <response code="200">OK</response>
+        /// <response code="400">Regra de negócio.</response>
         /// <response code="500">Erro de sistema.</response>
         [HttpGet("calculeProfitDistribution/{valueToDistribute}")]
         public async Task<ProfitDistributionDto> CalculeProfitDistributionAsync(double valueToDistribute)

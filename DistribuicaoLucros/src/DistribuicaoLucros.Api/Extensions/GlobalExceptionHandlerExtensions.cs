@@ -4,14 +4,14 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace DistribuicaoLucros.Api.Extensions
 {
-    public class GlobalExceptionHandlerExtensions
+    public static class GlobalExceptionHandlerExtensions
     {
-        public static IServiceCollection AddGlobalExceptionHandler(IServiceCollection services)
+        public static IServiceCollection AddGlobalExceptionHandler(this IServiceCollection services)
         {
             return services.AddTransient<GlobalExceptionHandlerMiddleware>();
         }
 
-        public static void UseGlobalExceptionHandler(IApplicationBuilder app)
+        public static void UseGlobalExceptionHandler(this IApplicationBuilder app)
         {
             app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
         }

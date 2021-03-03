@@ -21,28 +21,41 @@ namespace DistribuicaoLucros.Api.Controllers
         /// <summary>
         /// Retorna todos os funcionários cadastrados
         /// </summary>
-        /// <remarks>
-        /// <param name="codigoAgenda"></param>
-        /// <returns>Agenda atualizada.</returns>
-        /// <response code="200">Confirmação realizado com sucesso.</response>
+        /// <returns>Lista funcionarios.</returns>
+        /// <response code="200">OK</response>
+        /// <response code="400">Regra de negócio.</response>
         /// <response code="500">Erro de sistema.</response>
         [HttpGet]
-        public async Task<List<Employee>> GetCollection()
+        public async Task<List<EmployeeDto>> GetCollection()
         {
-            return await _employeeService.GetAllCollectionAsync();
+            return await _employeeService.GetAllCollectionDtoAsync();
         }
 
         /// <summary>
         /// Persiste os funcionários enviados
         /// </summary>
         /// <param name="employees"></param>
-        /// <returns>Agenda atualizada.</returns>
-        /// <response code="200">Persistência realizada com sucesso.</response>
+        /// <returns>Persistência realizada com sucesso</returns>
+        /// <response code="200">OK</response>
+        /// <response code="400">Regra de negócio.</response>
         /// <response code="500">Erro de sistema.</response>
         [HttpPost]
         public async Task PersistCollectionAsync([FromBody] List<EmployeeDto> employees)
         {
             await _employeeService.InsertCollectionAsync(employees);
+        }
+
+        /// <summary>
+        /// Deleta todos os funcionários cadastrados
+        /// </summary>
+        /// <returns>Coleção deletada com sucesso</returns>
+        /// <response code="200">OK</response>
+        /// <response code="400">Regra de negócio.</response>
+        /// <response code="500">Erro de sistema.</response>
+        [HttpDelete]
+        public async Task DeleteCollection()
+        {
+            await _employeeService.DeleteCollection();
         }
     }
 }

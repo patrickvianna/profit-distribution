@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using DistribuicaoLucros.Api.Extensions;
 using DistribuicaoLucros.Api.Filters;
 using DistribuicaoLucros.Domain.Notification;
@@ -27,27 +28,13 @@ namespace DistribuicaoLucros.Api
         {
             ConfigureTools.ConfigureDependenciesTools(services);
             ConfigureService.ConfigureDependenciesService(services);
-            ConfigureRepository.ConfigureDependenciesService(services, Configuration);
+            ConfigureRepository.ConfigureDependenciesRepository(services, Configuration);
             AutoMapperConfig.ConfigureMappers(services);
             GlobalExceptionHandlerExtensions.AddGlobalExceptionHandler(services);
 
             services.AddScoped<NotificationContext>();
 
-            services.AddSwaggerGen(c => {
-                c.SwaggerDoc("v1",
-                    new OpenApiInfo
-                    {
-                        Title = "Profit distribution",
-                        Version = "v1",
-                        Description = "",
-                        Contact = new OpenApiContact
-                        {
-                            Name = "Patrick Vianna",
-                            Email = "patrickviannapblv@gmail.com",
-                            Url = new Uri("https://github.com/patrickvianna")
-                        }
-                    });
-            });
+            services.AddSwagger();
 
             services.AddControllers(options => options.Filters.Add<NotificationFilter>());
         }
