@@ -1,4 +1,4 @@
-#ApiDistribuicaoLucros
+# ApiDistribuicaoLucros
 
 Essa solução foi desenvolvida para calcular a distribuição de participação nos lucros de uma empresa.
 Levando em consideração atributos que influenciam no resultado, como: Tempo de admissão, área de atuação na empresa, cargo e salário.
