@@ -18,9 +18,16 @@ namespace DistribuicaoLucros.Service.Implementation
             _repository = repository;
             _mapper = mapper;
         }
+
         public async Task<List<Employee>> GetAllCollectionAsync()
         {
-            return await _repository.GetAllCollectionAsync();
+            return  await _repository.GetAllCollectionAsync();
+        }
+
+        public async Task<List<EmployeeDto>> GetAllCollectionDtoAsync()
+        {
+            var employees = await GetAllCollectionAsync();
+            return _mapper.Map<List<EmployeeDto>>(employees);
         }
 
         public async Task InsertCollectionAsync(List<EmployeeDto> employessDto)
@@ -28,5 +35,10 @@ namespace DistribuicaoLucros.Service.Implementation
             var employess = _mapper.Map<List<Employee>>(employessDto);
             await _repository.InsertCollectionAsync(employess);
         }
+
+        public async Task DeleteCollection()
+        {
+            await _repository.DeleteCollection();
+        }        
     }
 }

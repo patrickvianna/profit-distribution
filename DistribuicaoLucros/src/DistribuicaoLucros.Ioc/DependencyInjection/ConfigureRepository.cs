@@ -9,7 +9,7 @@ namespace DistribuicaoLucros.Ioc.DependencyInjection
 {
     public class ConfigureRepository
     {
-        public static void ConfigureDependenciesService(IServiceCollection services, IConfiguration configuration)
+        public static void ConfigureDependenciesRepository(IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 

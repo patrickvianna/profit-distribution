@@ -8,5 +8,6 @@ namespace DistribuicaoLucros.Domain.Interfaces.Repository
     {
         Task<List<Employee>> GetAllCollectionAsync();
         Task InsertCollectionAsync(List<Employee> employess);
+        Task DeleteCollection();
     }
 }

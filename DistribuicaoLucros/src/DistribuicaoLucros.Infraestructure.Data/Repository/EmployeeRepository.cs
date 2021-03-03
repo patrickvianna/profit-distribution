@@ -19,8 +19,9 @@ namespace DistribuicaoLucros.Infraestructure.Data.Repository
         }
         public async Task<List<Employee>> GetAllCollectionAsync()
         {
-            var firebaseEmployees = await _firebaseClient.Child(employeeCollectionKey).OnceAsync<Employee>();
-
+            var firebaseEmployees = await _firebaseClient.Child(employeeCollectionKey)
+                                                         .OnceAsync<Employee>();
+            
             return firebaseEmployees.Select(x => x.Object).ToList();
         }
 
@@ -28,8 +29,15 @@ namespace DistribuicaoLucros.Infraestructure.Data.Repository
         {
             foreach (var employee in employess)
             {
-                await _firebaseClient.Child(employeeCollectionKey).PostAsync(employee);
+                await _firebaseClient.Child(employeeCollectionKey)
+                                     .PostAsync<Employee>(employee);
             }
+        }
+
+        public async Task DeleteCollection()
+        {
+            await _firebaseClient.Child(employeeCollectionKey)
+                                 .DeleteAsync();
         }
     }
 }
